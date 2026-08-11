@@ -1,5 +1,6 @@
 name: Daily Crawl Mibei Nodes
-
+permissions:
+  contents: write
 on:
   schedule:
     - cron: '30 2 * * *'
