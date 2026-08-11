@@ -1,0 +1,33 @@
+name: Daily Crawl Mibei Nodes
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Run crawler
+        run: python Crawling_Node.py
+
+      - name: Commit and push config.txt
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add config.txt
+          git commit -m "Update nodes $(date +'%Y-%m-%d')" || echo "No changes to commit"
+          git push
