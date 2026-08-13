@@ -3,10 +3,11 @@ permissions:
   contents: write
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '35 4 * * *'
   workflow_dispatch:
 
 jobs:
+
   crawl:
     runs-on: ubuntu-latest
     steps:
