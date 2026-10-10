@@ -48,7 +48,7 @@ try:
     sub_response.raise_for_status()
 
     # 提取第一个符合规则的 .txt 节点链接
-    txt_pattern = re.compile(r'http[s]?://mm\.mibei77\.com/\d{6}/[\w\.]+\.txt', re.IGNORECASE)
+    txt_pattern = re.compile(r'http[s]?://[a-zA-Z0-9.-]*mibei77\.com/\d{6}/[\w.]+\.txt', re.IGNORECASE)
     txt_links = txt_pattern.findall(sub_response.text)
 
     if not txt_links:
